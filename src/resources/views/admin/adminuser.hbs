@@ -1,0 +1,455 @@
+<div class="body">
+  <section id="menu">
+    <div class="logo">
+
+      <a href="/admin">
+        <h2>Admin</h2></a>
+    </div>
+
+    <div class="items">
+      <li><i class=""></i><a href="/admin">Home</a></li>
+
+      <li><i class=""></i><a href="/me/stored/courses">Courses</a></li>
+
+      <li><i class=""></i><a href="/me/stored/paycourses">PayCourses</a></li>
+
+      <li><i class=""></i><a
+          href="/me/stored/registercourses"
+        >RegisteredCourses</a></li>
+
+    </div>
+  </section>
+
+  <section id="interface">
+    <div class="navigation">
+      <div class="n1">
+        <div class="search">
+          {{! <input type="text" placeholder="Search" />
+          <button class="btnSearch" type="submit"><i class="fa fa-search"></i></button> }}
+          <input class="btnsearchUser" type="button" value="Search User" />
+        </div>
+      </div>
+
+      <div class="protofile">
+
+        <div class="menudrop">
+          {{#if yAdmin}}
+            <img src="/khangImage/{{datac.image.name}}" />
+            <span>{{datac.firstName}}</span>
+          {{else}}
+            <img src="img/profile.png" alt="" />
+          {{/if}}
+
+          <ul class="subnav-us">
+            <li><a href="#">Cài đặt tài khoản</a></li>
+            <li><a class="log-out" href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="i-name">
+      List User
+    </h3>
+
+    <input class="btnaddUser" type="button" value="Add User" />
+
+    <dir class="board">
+      <table style=" width : 100% ">
+        <thead>
+          <tr>
+            <td> <span>Avatar</span> </td>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Password</td>
+            <td>Access</td>
+            <td>Phone</td>
+            {{! <td>PassWord</td>
+                                   <td>Access</td> }}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each dataAd}}
+            <tr>
+
+              <td class="people">
+                <img src="/khangImage/{{this.image.name}}" />
+              </td>
+              <td class="people-des">
+
+                <h5>{{this._id}}</h5>
+              </td>
+
+              <td>
+                {{this.firstName}}
+              </td>
+
+              <td>
+                {{this.email}}
+              </td>
+
+              <td>
+                {{this.passWord}}
+              </td>
+
+              <td>
+                {{this.access}}
+              </td>
+
+              <td>
+                {{this.phone}}
+              </td>
+
+              <td class="edit">
+                <a
+                  data-id="{{this._id}}"
+                  data-name="{{this.firstName}}"
+                  data-email="{{this.email}}"
+                  data-password="{{this.passWord}}"
+                  data-phone="{{this.phone}}"
+                  class="btnEditUS"
+                  href="#"
+                >Edit</a>
+
+              </td>
+
+              <td class="delete">
+                <a
+                  data-id="{{this._id}}"
+                  class="btnDeleteUS"
+                  href="#"
+                >Delete</a>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </dir>
+
+  </section>
+</div>
+
+<div class="xacnhan">
+  <div class="container">
+    <header>
+      <h1>LOG OUT</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form method="POST" action="/logout">
+        <p style="text-align:start ;">Bạn có chắc thoát không</p>
+        <input type="submit" value="Xác nhận" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="editUS">
+  <div class="container">
+    <header>
+      <h1>Edit User</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form
+        method="POST"
+        action="/adminuser/updateadmin/?_method=PATCH"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="text"
+          class="box-id"
+          name="id"
+          placeholder=""
+          readonly="true"
+          style="opacity: 0.8 ;"
+        />
+        <input
+          type="text"
+          class="box-name"
+          name="firstName"
+          placeholder="Nhập vào tên để thay đổi"
+        />
+        <input
+          type="email"
+          class="box-email"
+          name="email"
+          placeholder="Nhập vào email để thay đổi"
+        />
+        <input
+          type="text"
+          class="box-pass"
+          name="passWord"
+          placeholder="Nhập vào mật khẩu để thay đổi"
+        />
+        <input
+          type="text"
+          class="box-phone"
+          name="phone"
+          placeholder="Nhập điện thoại để thêm"
+        />
+        <input
+          type="file"
+          class="box-image"
+          name="myImage"
+          placeholder="Thêm ảnh"
+        />
+        <select
+          name="access"
+          style="margin: 15px 0 ; width: 300px ;  padding: 8px 16px; border-radius: 5px; border: none; border-bottom: 1px solid rgba(238, 12, 185, 0.84); ;"
+        >
+          <option style="margin: 15px;" value="admin">Admin</option>
+          <option style="margin: 15px;" value="hocvien">hocvien</option>
+        </select>
+        <input type="submit" value="Update" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="editUS">
+  <div class="container">
+    <header>
+      <h1>Are you sure delete this User</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form method="post" action="/adminuser/deleteadmin/?_method=DELETE">
+        <input
+          type="text"
+          class="box-id"
+          name="id"
+          placeholder="Nhập vào tên để thay đổi"
+          readonly="true"
+          style="opacity: 0.8 ;"
+        />
+        <input type="submit" value="Delete" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="editUS">
+  <div class="container">
+    <header>
+      <h1>Add User</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form
+        method="post"
+        action="/adminuser/createadmin"
+        enctype="multipart/form-data"
+      >
+        {{! <input type="text" class="box-id"  name="id" placeholder="" readonly="true" style="opacity: 0.8 ;"> }}
+        <input
+          type="text"
+          class="box-name"
+          name="firstName"
+          placeholder="Nhập vào tên để thêm"
+        />
+        <input
+          type="email"
+          class="box-email"
+          name="email"
+          placeholder="Nhập email để thêm"
+        />
+        <input
+          type="text"
+          class="box-pass"
+          name="passWord"
+          placeholder="Nhập mật khẩu để thêm"
+        />
+        <input
+          type="text"
+          class="box-phone"
+          name="phone"
+          placeholder="Nhập điện thoại để thêm"
+        />
+        <input
+          type="file"
+          class="box-image"
+          name="myImage"
+          placeholder="Thêm ảnh"
+        />
+        <select
+          name="access"
+          style="margin: 15px 0 ; width: 300px ;  padding: 8px 16px; border-radius: 5px; border: none; border-bottom: 1px solid rgba(238, 12, 185, 0.84); ;"
+        >
+          <option style="margin: 15px;" value="admin">Admin</option>
+          <option style="margin: 15px;" value="hocvien">hocvien</option>
+        </select>
+        <input type="submit" value="Add User" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="editUS">
+  <div class="container">
+    <header>
+      <h1>Search User</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form method="post" action="/adminuser/searchUs">
+        <input
+          type="text"
+          class="box-id"
+          name="firstName"
+          placeholder="Nhập tên để tìm kiếm"
+          style="opacity: 0.8 ;"
+        />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  //logout
+const formlogout = document.forms["log-out"];
+const btnlog = document.querySelectorAll('.log-out');
+const xacnhan = document.querySelector('.xacnhan');
+const  btnCloseXN = document.querySelector('.xacnhan .nav-closee');
+
+
+
+if(btnCloseXN != null){
+btnCloseXN.onclick = function(){
+    xacnhan.classList.remove("openXN")
+}
+}
+
+if(btnlog != null){
+btnlog.forEach(ele => {
+    ele.onclick = function(){
+   
+         xacnhan.classList.add("openXN")
+    }
+})
+}
+
+
+
+//form editUser
+ const btnED = document.querySelectorAll(".btnEditUS")
+ const modalED = document.querySelector(".editUS");
+  
+ const  btnCloseED = modalED.querySelector(".editUS header .nav-closee");
+
+ const ID = modalED.querySelector(".box-id")
+ const name1 = modalED.querySelector(".box-name")
+ const mail1 = modalED.querySelector(".box-email")
+ const pass1 = modalED.querySelector(".box-pass")
+ const phone1 = modalED.querySelector(".box-phone")
+ const image1 = modalED.querySelector(".box-image")
+
+
+
+
+ for(var btnED2 of btnED){
+    btnED2.onclick = function(){
+        modalED.classList.add("openXN")
+        console.log(this.getAttribute("data-id"))
+        var id = this.getAttribute("data-id")
+        var name = this.getAttribute("data-name")
+        var mail = this.getAttribute("data-email")
+        var pass = this.getAttribute("data-password")
+        var phone = this.getAttribute("data-phone")
+        
+
+        ID.value = id
+        name1.value = name
+        mail1.value = mail
+        pass1.value = pass
+        phone1.value = phone
+     
+        
+    }
+}
+
+btnCloseED.onclick = function(){
+    modalED.classList.remove("openXN")
+}
+
+// Delete User
+const btnDL = document.querySelectorAll(".btnDeleteUS")
+
+const modalDL = document.querySelectorAll(".editUS")[1];
+
+const btnCloseDL = modalDL.querySelector(".editUS header .nav-closee"); 
+
+const ID2 = modalDL.querySelector(".box-id");
+
+
+for(var btnDL2 of btnDL){
+    btnDL2.onclick = function(){
+        modalDL.classList.add("openXN")
+        console.log(this.getAttribute("data-id"))
+        var id = this.getAttribute("data-id")
+        ID2.value = id;
+    }
+}
+
+btnCloseDL.onclick = function(){
+    modalDL.classList.remove("openXN")
+}
+
+//create User
+
+const btnAdd = document.querySelectorAll(".btnaddUser")
+
+const modalAdd = document.querySelectorAll(".editUS")[2];
+
+const btnCloseAdd = modalAdd.querySelector(".editUS header .nav-closee"); 
+
+const ID3 = modalAdd.querySelector(".box-id");
+
+for(var btnDL3 of btnAdd){
+    btnDL3.onclick = function(){
+        modalAdd.classList.add("openXN")
+        console.log(this.getAttribute("data-id"))
+        var id = this.getAttribute("data-id")
+        ID3.value = id;
+    }
+}
+
+btnCloseAdd.onclick = function(){
+    modalAdd.classList.remove("openXN")
+}
+
+
+
+//search User
+const btnSearch = document.querySelectorAll(".btnsearchUser")
+
+const modalSearch = document.querySelectorAll(".editUS")[3];
+
+const btnCloseSearch = modalSearch.querySelector(".editUS header .nav-closee"); 
+
+
+for(var btnS of btnSearch){
+    btnS.onclick = function(){
+        modalSearch.classList.add("openXN")
+        
+    }
+}
+
+btnCloseSearch.onclick = function(){
+    modalSearch.classList.remove("openXN")
+}
+
+</script>

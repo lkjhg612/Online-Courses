@@ -1,0 +1,355 @@
+<header class="header" id="header">
+
+  <div class="head-container">
+    <nav class="nav">
+      <ul class="nav-menu">
+        <a
+          style="color: white"
+          class="navbar-brand"
+          href="/"
+        >Khang-Education</a>
+        <li><a
+            style="color: white !important"
+            href="/"
+            class="nav-link active"
+          >Home</a></li>
+        <li><a
+            style="color: white !important"
+            href="/about"
+            class="nav-link"
+          >About</a></li>
+        {{!-- <li><a
+            style="color: white !important"
+            href="/"
+            class="nav-link"
+          >Route</a></li> --}}
+        <li><a
+            style="color: white !important"
+            href="/blog"
+            class="nav-link"
+          >Blog</a></li>
+        <li class="user-mobile"><a
+            href="#testimonials"
+            class="nav-link"
+          >profile</a>
+          <ul class="subnav-us">
+            {{#if yuser}}
+              <li><a href="#">Cài đặt tài khoản</a></li>
+              <li><a class="log-out" href="#">Log Out</a></li>
+            {{else}}
+              <li><a class="sign-in" href="#">Sign In</a></li>
+              <li><a class="sign-out" href="#">Sign Up</a></li>
+            {{/if}}
+          </ul>
+        </li>
+        <li><a
+            style="color: white !important; font-weight: 500; text-transform : uppercase"
+            href="#footer"
+            class="contact"
+          >Contact</a></li>
+      </ul>
+      <div class="nav-close visible">
+        <i class="fas fa-times"></i>
+      </div>
+
+      <div class="nav-icon">
+        <div class="nav-us">
+          {{#if yuser}}
+            <img class="user-login" src="/khangImage/{{data.image.name}}" />
+            <span>{{data.firstName}}</span>
+          {{else}}
+            <img src="img/profile.png" alt="" />
+          {{/if}}
+          <ul class="subnav-us">
+            {{#if yuser}}
+              <li><a href="#">Cài đặt tài khoản</a></li>
+              <li><a class="log-out" href="#">Log Out</a></li>
+            {{else}}
+              <li><a class="sign-in" href="#">Sign In</a></li>
+              <li><a class="sign-up" href="#">Sign Up</a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a
+            style="color: white !important"
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          Courses
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/">Free Courses</a></li>
+            <li><hr class="dropdown-divider" ></li>
+            <li><a class="dropdown-item" href="/homePayCouses">Pro Courses</a></li>
+       
+          
+          </ul>
+        </li>
+
+      </ul>
+
+    </nav>
+    <div class="nav-toggle" id="nav-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+
+</header>
+
+<form method="post" name="log-out"></form>
+
+
+<div class="modal">
+  <div class="container">
+    <header>
+      <h1>LOGIN</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form id="loginForm" method="Post" action="/login">
+        {{! get, post , (patch, put) , delete}}
+        <input
+          type="text"
+          name="email"
+          class="input"
+          placeholder="Enter your email"
+          required="true"
+        />
+        <input
+          id="pass"
+          type="text"
+          name="passWord"
+          class="input"
+          placeholder="Enter your password"
+          required="true"
+        />
+        <input type="submit" value="Login" />
+        <input type="submit" value="Login with facebook" />
+        <input type="submit" value="Login with Google" />
+        
+
+
+        
+        <a href="">Quên mật khẩu?</a>
+      </form>
+    </div>
+    <footer>
+      <a href="">Help?</a>
+    </footer>
+  </div>
+</div>
+
+
+<div class="xacnhan">
+  <div class="container">
+    <header>
+      <h1>LOG OUT</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form method="post" action="/logout">
+        <p style="text-align:start ;">Bạn có chắc thoát không</p>
+        <input type="submit" value="Xác nhận" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-signup">
+  <div class="container">
+    <header>
+      <h1>SIGN UP</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form method="POST" action="/signup" enctype="multipart/form-data">
+      <input
+          type="text"
+          name="firstName"
+          class="input"
+          placeholder="Enter your name "
+          required="true"
+        />
+        <input
+          type="text"
+          name="email"
+          class="input"
+          placeholder="Enter your email "
+          required="true"
+        />
+
+        <input
+          type="text"
+          name="passWord"
+          class="input"
+          placeholder="Enter your password"
+          required="true"
+        />
+
+          <input
+          type="text"
+          name="phone"
+          class="input"
+          placeholder="Enter your phone"
+          required="true"
+        />
+
+        <input
+          type="file"
+          class="box-image"
+          name="myImage"
+          placeholder="Thêm ảnh"
+        />
+
+        <input type="submit" value="Xác nhận" id="signupCode"/>
+       
+
+      </form>
+    </div>
+    <footer>
+      <a href="">Help?</a>
+    </footer>
+  </div>
+</div>
+
+<div class="modal-signoutcode ">
+   <div class="container">
+      <header>
+         <h1>SIGN UP SUCCESSFULLY</h1>
+         <div class="nav-closee">
+            <i class="fas fa-times"></i>
+         </div>
+      </header>
+      <div class="content-body">
+         <form method="POST" action="/check">
+            <input type="text" name="code" class="input" placeholder="Enter your CODE" required="true">
+            <p style="font-size: 14px;color: blue; margin: 15px 0; font-style: italic; opacity: 0.8;">Enter a code was send to your email</p>
+            <input type="submit" value="Xác nhận">
+         </form>
+      </div>
+      <footer>
+         <a href="">Help?</a>
+      </footer>
+   </div>
+</div>
+
+
+{{#if loginError}}
+<div class="modal-lg2">
+   <div class="container">
+      <header>
+         <h1>LOGIN</h1>
+         <div class="nav-closee">
+            <i class="fas fa-times"></i>
+         </div>
+      </header>
+      <div class="content-body">
+         <form method="POST" action="/login">
+            <input type="text" name="email" class="input" placeholder="Enter your email" required="true">
+            <input type="text" name="passWord" class="input" placeholder="Enter your password" required="true">
+            <p style="font-size: 14px;color: blue; margin: 15px 0; font-style: italic; opacity: 0.8;">Tài khoản hoặc mật khẩu không đúng</p>
+            <input type="submit" value="Login">
+            <a href="">Quên mật khẩu?</a>
+         </form>
+      </div>
+      <footer>
+         <a href="">Help?</a>
+      </footer>
+   </div>
+   </div>
+   {{/if}}
+
+
+
+
+<script>
+
+  //event signin 
+  const modal = document.querySelector(".modal"); 
+  const btnClose = document.querySelector('.modal header .nav-closee'); 
+  const signin =document.querySelectorAll('.sign-in'); 
+  if(btnClose != null){ 
+    btnClose.onclick = function(){ 
+      modal.classList.remove("open"); 
+      } } 
+      if(signin !=null){
+  signin.forEach(ele => { 
+    if(modal != null){ 
+      ele.onclick = function() {
+  modal.classList.add("open") 
+  } } }) } 
+  //event logout 
+  const formlogout = document.forms["log-out"]; 
+  const btnlog = document.querySelectorAll('.log-out'); 
+  const xacnhan = document.querySelector('.xacnhan'); 
+  const btnCloseXN = document.querySelector('.xacnhan .nav-closee'); 
+  if(btnCloseXN != null){
+  btnCloseXN.onclick = function(){
+     xacnhan.classList.remove("openXN") } }
+  if(btnlog != null){ btnlog.forEach(ele => 
+  { ele.onclick = function(){
+  xacnhan.classList.add("openXN") } }
+  ) } //event signup 
+  const modalSO = document.querySelector(".modal-signup") 
+  const btnSO = document.querySelectorAll(".sign-up") 
+  const btnCloseSO = document.querySelector('.modal-signup .nav-closee'); 
+  if(btnCloseSO != null){
+  btnCloseSO.onclick = function(){ 
+    modalSO.classList.remove("openXN") } }
+  if(btnSO != null){ btnSO.forEach(ele => 
+  { ele.onclick = function(){
+  modalSO.classList.add("openXN") } }) }
+
+  //signupCode
+
+const modalCode = document.querySelector(".modal-signoutcode")
+const btnCode = document.querySelector("#signupCode")
+const btnCloseCode = document.querySelector('.modal-signoutcode .nav-closee');
+
+if(btnCloseCode!=null){
+    btnCloseCode.onclick = function(){
+     modalCode.classList.remove("openXN")
+    }
+}
+
+if(btnCode != null){
+ btnCode.onclick = function(){
+  modalCode.classList.add("openXN")
+ }
+}
+
+</script>
+
+
+
+
+{{#if loginError}}
+<script>
+  //error login
+
+        const modall =  document.querySelector('.modal-lg2')
+        const  btnClosee = document.querySelector('.modal-lg2 header .nav-closee');
+         modall.classList.add("openXN")
+        
+        if(btnClosee!=null){
+          btnClosee.onclick = function(){
+          modall.classList.remove("openXN");
+         }
+        }
+</script>
+
+{{/if}}

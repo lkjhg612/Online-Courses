@@ -1,0 +1,388 @@
+
+<div class="body">
+   <section id = "menu">
+         <div class="logo">
+                
+                 <a href="/admin">
+                  <h2>Admin</h2></a>
+           </div>
+            
+           <div class="items">
+              <li><i class=""></i><a href="/admin">Home</a></li>
+            
+              <li><i class=""></i><a href="/me/stored/courses">Courses</a></li>
+
+              <li><i class=""></i><a href="/me/stored/paycourses">PayCourses</a></li>
+
+              <li><i class=""></i><a href="/me/stored/registercourses">RegisteredCourses</a></li>
+            
+     
+           </div>
+    </section>
+
+    <section id="interface">
+             <div class="navigation">
+                  <div class="n1">
+                      <div class="search">
+                      
+                           <input class="btnsearchUser" type="button" value="Search Courses" />
+                      </div>
+                  </div>
+
+                  <div class="protofile">
+                   
+                      <div class="menudrop">
+                        {{#if yAdmin}}
+                        <img src="/khangImage/{{datac.image.name}}" />
+                        <span>{{datac.firstName}}</span>
+                        {{else}}
+                        <img src="img/profile.png" alt="" />
+                           {{/if}}
+                          <ul class="subnav-us">
+                                    <li><a href="#">Cài đặt tài khoản</a></li>
+                                    <li><a class="log-out" href="#">Log Out</a></li>
+                                 </ul>
+                      </div>
+                  </div>
+             </div>
+
+             <h3 class="i-name">
+                List Courses
+             </h3>
+
+      
+
+           <input class="btnaddUser" type="button" value ="Add Courses">
+
+         
+
+   <dir class="board">
+                  <table  width = "100%" >
+                            <thead>
+                                <tr>  
+                                   <td>Number</td>
+                                   <td>ID</td>
+                                   <td>Name</td>
+                                   <td>description</td>
+                                   <td>Image</td>
+                                   <td>videoId</td>
+                                   <td>level</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                               {{#each course}}
+                                <tr>
+
+                                 <td class="people">
+                                     {{sum @index 1}}
+                                   </td>
+                                   <td class="people-des">
+                                        
+                                  <h5>{{this._id}}</h5>
+
+                                   </td>
+
+                                   <td>
+                                    {{this.name}}
+                                   </td>
+
+                                     <td>
+                                    {{this.description}}
+                                   </td>
+                 
+
+                                   <td class ="imageCourse">
+                                       {{!-- {{this.image}} --}}
+                                       
+                                       <img src="/khangImage/{{this.image.name}}" />
+                                   </td>
+
+                                   <td>
+                                      {{this.videoId}}
+                                   </td>
+                                      
+                                   <td>
+                                       {{this.level}}
+                                   </td>
+
+                                  
+
+                                   <td class="edit">
+                                         <a data-id = "{{this._id}}"
+                                         data-name = "{{this.name}}"
+                                          data-description = "{{this.description}}"
+                                          {{!-- data-image = "{{this.image}}" --}}
+                                          data-video = "{{this.videoId}}"
+                                          data-level = "{{this.level}}"
+                                              
+                                          class="btnEditUS" href="#">Edit</a> 
+                                   </td>
+
+                                   <td class="delete">
+                                    <a data-id = "{{this._id}}"class="btnDeleteUS" href="#">Delete</a>
+                                    {{!-- <a data-id = ""class="btnDeleteUS" href="#">Delete</a> --}}
+                                  </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                  </table>
+             </dir>  
+
+   </section>
+</div>
+
+
+<div class="xacnhan">
+   <div class="container">
+       <header>  
+             <h1>LOG OUT</h1>
+             <div class="nav-closee">
+                <i class="fas fa-times"></i>
+            </div>  
+       </header>
+       <div class="content-body">
+          <form method="POST" action="/logout">
+             <p style="text-align:start ;">Bạn có chắc thoát không</p>
+             <input type="submit" value="Xác nhận">
+          </form>
+       </div>
+   </div>
+</div>
+
+
+<div class="editUS">
+                     <div class="container">
+                       <header>  
+                             <h1>Edit Courses</h1>
+                             <div class="nav-closee">
+                                <i class="fas fa-times"></i>
+                            </div>  
+                       </header>
+                       <div class="content-body">
+                          <form method="POST" action="/courses/edit/?_method=PATCH" enctype="multipart/form-data">
+                           <input type="text" class="box-id"  name="id" placeholder="" readonly="true" style="opacity: 0.8 ;">
+                             <input type="text" class="box-name"  name="name" placeholder="Nhập vào tên khóa học để sửa">
+                              <input type="text" class="box-description" name="description"  placeholder="Nhập vào mô tả để sửa">
+                                {{!-- <input type="text" class="box-image"  name="image" placeholder="Nhập vào link ảnh để sửa">    --}}
+                                <input type="file" class="box-image" name="myImage" placeholder="Thêm ảnh"/>
+                                 <input type="text" class="box-videoId"  name="videoId" placeholder="Nhập video Id để sửa">   
+                                     <input type="text" class="box-level"  name="level" placeholder="Nhập level để sửa">   
+                                 
+                                <input type="submit" value="Update">
+                          </form>
+                       </div>
+                   </div>
+                </div>
+
+<div class="editUS">
+     <div class="container">
+       <header>  
+             <h1>Are you sure delete this Courses</h1>
+             <div class="nav-closee">
+                <i class="fas fa-times"></i>
+            </div>  
+       </header>
+       <div class="content-body">
+          <form method="post" action="/courses/destroy/?_method=DELETE">
+          <input type="text" class="box-id" name="id"  placeholder="Nhập vào tên để thay đổi"  readonly = "true" style="opacity: 0.8 ;">
+                <input type="submit" value="Delete">
+          </form>
+       </div>
+   </div>
+</div>
+
+<div class="editUS">
+                     <div class="container">
+                       <header>  
+                             <h1>Add Courses</h1>
+                             <div class="nav-closee">
+                                <i class="fas fa-times"></i>
+                            </div>  
+                       </header>
+                       <div class="content-body">
+                          <form method="post" action="/courses/create" enctype="multipart/form-data">
+                             <input type="text" class="box-name"  name="name" placeholder="Nhập vào tên khóa học để thêm">
+                              <input type="text" class="box-description" name="description"  placeholder="Nhập vào mô tả để thêm">
+                                <input type="file" class="box-image" name="myImage" placeholder="Thêm ảnh"/>
+                                 <input type="text" class="box-videoId"  name="videoId" placeholder="Nhập video Id để thêm">   
+                                     <input type="text" class="box-level"  name="level" placeholder="Nhập level để thêm">   
+                                 
+                                <input type="submit" value="Add Courses">
+                          </form>
+                       </div>
+                   </div>
+                </div>
+
+                
+
+                <div class="editUS">
+  <div class="container">
+    <header>
+      <h1>Search Courses</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form method="post" action="/courses/searchCourses">
+        <input
+          type="text"
+          class="box-id"
+          name="name"
+          placeholder="Nhập tên để tìm kiếm"
+          style="opacity: 0.8 ;"
+        />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+//logout
+const formlogout = document.forms["log-out"];
+const btnlog = document.querySelectorAll('.log-out');
+const xacnhan = document.querySelector('.xacnhan');
+const  btnCloseXN = document.querySelector('.xacnhan .nav-closee');
+
+
+
+if(btnCloseXN != null){
+btnCloseXN.onclick = function(){
+    xacnhan.classList.remove("openXN")
+}
+}
+
+if(btnlog != null){
+btnlog.forEach(ele => {
+    ele.onclick = function(){
+   
+         xacnhan.classList.add("openXN")
+    }
+})
+}
+
+
+
+//form editCourses
+ const btnED = document.querySelectorAll(".btnEditUS")
+ const modalED = document.querySelector(".editUS");
+  
+ const  btnCloseED = modalED.querySelector(".editUS header .nav-closee");
+
+ const ID = modalED.querySelector(".box-id")
+ const name1 = modalED.querySelector(".box-name")
+ const description = modalED.querySelector(".box-description")
+ const image1 = modalED.querySelector(".box-image")
+ const video1 = modalED.querySelector(".box-videoId")
+ const price1 = modalED.querySelector(".box-price")
+const lv = modalED.querySelector(".box-level")
+
+
+ for(var btnED2 of btnED){
+    btnED2.onclick = function(){
+        modalED.classList.add("openXN")
+        console.log(this.getAttribute("data-id"))
+        var id = this.getAttribute("data-id")
+        var name = this.getAttribute("data-name")
+        var dsc = this.getAttribute("data-description")
+        var image = this.getAttribute("data-image")
+        var video = this.getAttribute("data-video")
+        var level = this.getAttribute("data-level")
+
+       
+
+        ID.value = id
+        name1.value = name
+        description.value = dsc
+        image1.value = image
+       
+        video1.value = video
+        lv.value = level
+
+       
+    }
+}
+
+btnCloseED.onclick = function(){
+    modalED.classList.remove("openXN")
+}
+
+
+
+
+
+
+// Delete Courses
+const btnDL = document.querySelectorAll(".btnDeleteUS")
+
+const modalDL = document.querySelectorAll(".editUS")[1];
+
+const btnCloseDL = modalDL.querySelector(".editUS header .nav-closee"); 
+
+const ID2 = modalDL.querySelector(".box-id");
+
+
+for(var btnDL2 of btnDL){
+    btnDL2.onclick = function(){
+        modalDL.classList.add("openXN")
+        console.log(this.getAttribute("data-id"))
+        var id = this.getAttribute("data-id")
+        ID2.value = id;
+    }
+}
+
+btnCloseDL.onclick = function(){
+    modalDL.classList.remove("openXN")
+}
+
+//create course
+
+const btnAdd = document.querySelectorAll(".btnaddUser")
+
+const modalAdd = document.querySelectorAll(".editUS")[2];
+
+const btnCloseAdd = modalAdd.querySelector(".editUS header .nav-closee"); 
+
+const ID3 = modalAdd.querySelector(".box-id");
+
+for(var btnDL3 of btnAdd){
+    btnDL3.onclick = function(){
+        modalAdd.classList.add("openXN")
+        console.log(this.getAttribute("data-id"))
+        var id = this.getAttribute("data-id")
+        ID3.value = id;
+    }
+}
+
+btnCloseAdd.onclick = function(){
+    modalAdd.classList.remove("openXN")
+}
+
+//search courses
+const btnSearch = document.querySelectorAll(".btnsearchUser")
+
+const modalSearch = document.querySelectorAll(".editUS")[3];
+
+const btnCloseSearch = modalSearch.querySelector(".editUS header .nav-closee"); 
+
+
+
+for(var btnS of btnSearch){
+    btnS.onclick = function(){
+        modalSearch.classList.add("openXN")
+       
+    }
+}
+
+btnCloseSearch.onclick = function(){
+    modalSearch.classList.remove("openXN")
+}
+
+
+
+</script>
+

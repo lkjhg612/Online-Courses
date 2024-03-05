@@ -1,0 +1,271 @@
+
+
+<div class="container main-content">
+
+
+   <img class="hinhpro" src="img/CoursesPro.png" />
+
+ {{!<h1>KHÓA HỌC TRẢ PHÍ</h1> }}
+  <div class="row">
+    {{#each paycourses}}
+ 
+   
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="card card-course-item" style="width: 18rem;">
+          {{!-- <a href="/courses/{{this.slug}}"> --}}
+           <a href="#">
+
+            <img
+              class="card-img-top"
+              {{!-- src="{{this.Pimage}}" --}}
+               src="/khangImage/{{this.image.name}}"
+              alt="{{this.Pname}}"
+            />
+
+          </a>
+
+          <div class="card-body">
+
+            {{!-- <a href="/courses/{{this.slug}}"> --}}
+              <a href="#">
+
+              <h5 class="card-title">{{this.Pname}}</h5>
+
+            </a>
+
+            <p class="card-text">{{this.Pdescription}}</p>
+              <p class="card-text">{{this.Pprice}}</p>
+            {{!-- <a href="#" class="btn btn-primary">Đăng ký khóa học</a> --}}
+
+
+              <input class="btnaddUser" type="button" value="Mua Khóa học"         
+              
+             
+              data-coursename = "{{this.Pname}}"
+              data-price = {{this.Pprice}}
+              
+            
+              
+              
+              />
+          </div>
+        </div>
+      </div>
+ 
+
+    {{/each}}
+      
+      
+
+  </div>
+
+
+ {{!<h1>KHÓA HỌC MIỄN PHÍ</h1> }}
+  <div class="row">
+    {{#each courses}}
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="card card-course-item" style="width: 18rem;">
+          <a href="/courses/{{this.slug}}">
+
+            <img
+              class="card-img-top"
+              {{!-- src="{{this.image}}" --}}
+              src="/khangImage/{{this.image.name}}"
+              alt="{{this.name}}"
+            />
+
+          </a>
+
+          <div class="card-body">
+
+            <a href="/courses/{{this.slug}}">
+
+              <h5 class="card-title">{{this.name}}</h5>
+
+            </a>
+
+            <p class="card-text">{{this.description}}</p>
+            {{!-- <a href="#" class="btn btn-primary">Học</a> --}}
+          </div>
+        </div>
+      </div>
+
+    {{/each}}
+
+  </div>
+
+
+ 
+  {{! Back end }}
+  <div class="row">
+    {{#each courses}}
+
+     
+
+    {{/each}}
+
+  </div>
+     <img class="hinh" src="img/khoahoc.png" />
+</div>
+
+{{#if yuser}}
+
+    
+<div class="editUS">
+  <div class="container">
+    <header>
+      <h1>Buy Courses</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form
+        method="post"
+        action="/buy"
+      >
+        {{! <input type="text" class="box-id"  name="id" placeholder="" readonly="true" style="opacity: 0.8 ;"> }}
+        <input
+          type="text"
+          class="box-name"
+          name="rFirstName"
+          placeholder="Nhập vào tên "
+          value = "{{data.firstName}}"
+           readonly="true"
+        />
+        
+        <input
+          type="email"
+          class="box-email"
+          name="rEmail"
+          placeholder="Nhập email "
+          value = "{{data.email}}"
+          readonly="true"
+        />
+     
+        <input
+          type="text"
+          class="box-phone"
+          name="rPhone"
+          placeholder="Nhập điện thoại "
+          value = "{{data.phone}}"
+          readonly="true"
+        />
+
+          <input
+          type="text"
+          class="box-coursename"
+          name="rCourseName"
+          placeholder="Nhập khóa học "
+          readonly="true"
+          
+        />
+          <input
+          type="text"
+          class="box-pricecourse"
+          name="rPriceCourse"
+          placeholder="Nhập giá tiền "
+          readonly="true"
+         
+        />
+       
+        <select
+          name="rPay"
+          style="margin: 15px 0 ; width: 300px ;  padding: 8px 16px; border-radius: 5px; border: none; border-bottom: 1px solid rgba(238, 12, 185, 0.84); ;"
+        >
+          <option style="margin: 15px;" value="Momo">Momo</option>
+          <option style="margin: 15px;" value="ZaloPay">ZaloPay</option>
+          <option style="margin: 15px;" value="Visa">Visa</option>
+          <option style="margin: 15px;" value="MasterCard">MasterCard</option>
+        </select>
+        <p style="font-size: 14px;color: blue; margin: 15px 0; font-style: italic; opacity: 0.8;">Please check your email to accept your payment</p>
+        <input type="submit" value="Accept" id="signupCode"/>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+{{else}}
+<div class="editUS">
+  <div class="container">
+    <header>
+      <h1>ALERT</h1>
+      <div class="nav-closee">
+        <i class="fas fa-times"></i>
+      </div>
+    </header>
+    <div class="content-body">
+      <form method="get" action="/homePayCouses">
+
+         <h1>You need to login to use this feature</h1>
+        <input type="submit" value="Xác nhận" />
+      </form>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+
+
+
+
+
+
+<script>
+
+const btnAdd = document.querySelectorAll(".btnaddUser")
+
+const modalAdd = document.querySelectorAll(".editUS")[0];
+const btnCloseAdd = modalAdd.querySelector(".editUS header .nav-closee");  
+
+
+
+const coursename1 = document.querySelector(".box-coursename")
+const price1 = document.querySelector(".box-pricecourse")
+
+for(var btnDL3 of btnAdd){
+    btnDL3.onclick = function(){
+        modalAdd.classList.add("openXN")
+   
+        var cname = this.getAttribute("data-coursename")
+        var price = this.getAttribute("data-price")
+
+
+    
+        coursename1.value = cname
+        price1.value = price
+        
+    }
+}
+
+ btnCloseAdd.onclick = function(){
+    modalAdd.classList.remove("openXN")
+
+ }
+
+ const btnSearch = document.querySelectorAll(".btnsearchUser")
+
+const modalSearch = document.querySelectorAll(".editUS")[1];
+
+{{!-- const btnCloseSearch = modalSearch.querySelector(".editUS header .nav-closee");  --}}
+
+
+for(var btnS of btnSearch){
+    btnS.onclick = function(){
+        modalSearch.classList.add("openXN")  
+    }
+}
+
+{{!-- btnCloseSearch.onclick = function(){
+    modalSearch.classList.remove("openXN")
+} --}}
+
+
+
+
+
+</script>
