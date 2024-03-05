@@ -152,7 +152,7 @@ homePayCourses(req, res, next){
     })
     
 }
-
+// Tao cung la Son
     admin(req, res, next){
         const datac =  req.cookies.User
         account.find({})

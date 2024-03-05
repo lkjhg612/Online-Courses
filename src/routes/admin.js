@@ -12,7 +12,7 @@ const Stored = multer.diskStorage({
     }
 })
 
-//fglsdafsklafhsdkfhkjjsdjfhjdhf
+//Tao la Son
 const upload = multer({
    storage : Stored
 })
